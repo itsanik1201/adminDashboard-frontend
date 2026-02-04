@@ -1,0 +1,115 @@
+.reports {
+  padding: 2rem;
+}
+
+.reports__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.reports__title {
+  margin: 0;
+  color: var(--color-steel-blue);
+}
+
+.reports__create-btn {
+  background-color: var(--color-steel-blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.reports__create-btn:hover {
+  background-color: var(--color-dark-steel-blue);
+}
+
+.reports__loading,
+.reports__error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.reports__error {
+  color: #dc3545;
+}
+
+.reports__table-container {
+  overflow-x: auto;
+}
+
+.reports__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reports__table th,
+.reports__table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: top;
+}
+
+.reports__table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: var(--color-steel-blue);
+}
+
+.reports__placements-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reports__placements-list li {
+  margin-bottom: 0.25rem;
+}
+
+.reports__no-placements {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.reports__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.reports__edit-btn,
+.reports__delete-btn {
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.reports__edit-btn {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.reports__edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.reports__delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.reports__delete-btn:hover {
+  background-color: #c82333;
+}

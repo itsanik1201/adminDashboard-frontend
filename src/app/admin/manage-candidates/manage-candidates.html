@@ -1,0 +1,44 @@
+<div class="manage-candidates">
+  <div class="manage-candidates__header">
+    <h1 class="manage-candidates__title">Manage Candidates</h1>
+    @if (isAdminOnly()) {
+      <button class="manage-candidates__create-btn" (click)="createStudent()">Create Student</button>
+    }
+  </div>
+
+  @if (loading) {
+    <div class="manage-candidates__loading">Loading students...</div>
+  } @else if (error) {
+    <div class="manage-candidates__error">{{ error }}</div>
+  } @else {
+    <div class="manage-candidates__table-container">
+      <table class="manage-candidates__table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            @if (isAdminOnly()) {
+              <th>Actions</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (student of students; track student._id) {
+            <tr>
+              <td>{{ student.name }}</td>
+              <td>{{ student.email }}</td>
+              <td>{{ student.role }}</td>
+              @if (isAdminOnly()) {
+                <td class="manage-candidates__actions">
+                  <button class="manage-candidates__edit-btn" (click)="editStudent(student)">Edit</button>
+                  <button class="manage-candidates__delete-btn" (click)="deleteStudent(student)">Delete</button>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

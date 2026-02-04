@@ -1,0 +1,50 @@
+<div class="layout">
+  <aside class="layout__sidebar">
+    <div class="layout__sidebar-logo">
+      <svg class="layout__logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="48" height="48" rx="8" fill="var(--color-steel-blue)" opacity="0.9"/>
+        <text x="24" y="30" text-anchor="middle" fill="white" font-size="18" font-weight="700" font-family="system-ui">NIT</text>
+      </svg>
+      <span class="layout__logo-text">NIT Jamshedpur</span>
+    </div>
+
+    <nav class="layout__nav">
+      <a routerLink="/dashboard" routerLinkActive="layout__nav-link--active" [routerLinkActiveOptions]="{exact: true}" class="layout__nav-link">
+        <span class="layout__nav-label">Dashboard</span>
+      </a>
+      <a routerLink="/dashboard/analytics" routerLinkActive="layout__nav-link--active" class="layout__nav-link">
+        <span class="layout__nav-label">Analytics</span>
+      </a>
+      <a routerLink="/dashboard/placements" routerLinkActive="layout__nav-link--active" class="layout__nav-link">
+        <span class="layout__nav-label">Placements</span>
+      </a>
+      @if (auth.isAdminView()) {
+        <a routerLink="/dashboard" class="layout__nav-link">
+          <span class="layout__nav-label">Manage Candidates</span>
+        </a>
+        <a routerLink="/dashboard" class="layout__nav-link">
+          <span class="layout__nav-label">Reports</span>
+        </a>
+      }
+    </nav>
+
+    <div class="layout__footer">
+      <button type="button" class="layout__logout" (click)="handleLogout()">Log out</button>
+    </div>
+  </aside>
+
+  <div class="layout__main">
+    <header class="layout__header">
+      <button class="layout__search-trigger" (click)="search.openModal()" type="button">
+        <span class="layout__search-placeholder">Search placements, companies...</span>
+        <kbd class="layout__search-kbd">⌘K</kbd>
+      </button>
+    </header>
+
+    <main class="layout__content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-global-search #search></app-global-search>
+</div>

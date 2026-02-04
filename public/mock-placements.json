@@ -1,0 +1,108 @@
+{
+  "metrics": [
+    { "value": "1200+", "label": "Offers" },
+    { "value": "450+", "label": "Companies Visited" },
+    { "value": "200+", "label": "New Recruiters" },
+    { "value": "95 LPA", "label": "Highest CTC" },
+    { "value": "15.5 LPA", "label": "Average CTC" },
+    { "value": "96.2%", "label": "Placement %", "isHighlight": true }
+  ],
+  "trend": {
+    "labels": ["2019", "2020", "2021", "2022", "2023", "2024"],
+    "values": [75, 78, 82, 86, 90, 96]
+  },
+  "branchWise": {
+    "labels": ["CSE", "ECE", "EE", "ME", "CE", "PIE", "CHEM", "MME"],
+    "values": [98, 95, 92, 88, 85, 90, 87, 89]
+  },
+  "recruiters": [
+    "Amazon", "Microsoft", "Google", "Goldman Sachs", "Flipkart", "Adobe",
+    "Intel", "Qualcomm", "Uber", "PayPal", "JP Morgan", "Deloitte",
+    "Apple", "Meta", "Netflix", "Tesla", "Cisco", "Oracle", "SAP",
+    "Accenture", "TCS", "Infosys", "Wipro", "HCL", "IBM", "Capgemini",
+    "Morgan Stanley", "BlackRock", "Citigroup", "Wells Fargo", "Barclays",
+    "Samsung", "Sony", "LG", "Micron", "Texas Instruments", "Broadcom",
+    "Nvidia", "AMD", "VMware", "Salesforce", "Atlassian", "Spotify",
+    "Airbnb", "Stripe", "Square", "Shopify", "Twilio", "Slack",
+    "Zoom", "Dropbox", "Pinterest", "Reddit", "Snapchat", "TikTok",
+    "ByteDance", "Alibaba", "Tencent", "Baidu", "JD.com", "Meituan",
+    "Didi", "Weibo", "Xiaomi", "Huawei", "ZTE", "OPPO", "Vivo",
+    "OnePlus", "Realme", "Lenovo", "Dell", "HP", "Acer", "Asus",
+    "MSI", "Razer", "Corsair", "Logitech", "SteelSeries", "HyperX",
+    "Roccat", "Cooler Master", "NZXT", "Fractal Design", "be quiet!",
+    "Noctua", "Arctic", "Thermalright", "Phanteks", "Lian Li",
+    "Corsair", "Seasonic", "EVGA", "Gigabyte", "ASRock", "MSI",
+    "Sapphire", "PowerColor", "XFX", "Zotac", "Gainward", "Palit"
+  ],
+  "analytics": {
+    "salaryDistribution": {
+      "labels": ["0-5 LPA", "5-10 LPA", "10-15 LPA", "15-20 LPA", "20-30 LPA", "30+ LPA"],
+      "values": [80, 320, 400, 280, 150, 80]
+    },
+    "companyWisePlacements": [
+      { "company": "Amazon", "students": 75, "avgSalary": 28.5 },
+      { "company": "Microsoft", "students": 62, "avgSalary": 32.0 },
+      { "company": "Google", "students": 45, "avgSalary": 35.2 },
+      { "company": "Goldman Sachs", "students": 32, "avgSalary": 22.8 },
+      { "company": "Flipkart", "students": 68, "avgSalary": 18.5 },
+      { "company": "Adobe", "students": 38, "avgSalary": 24.6 },
+      { "company": "TCS", "students": 140, "avgSalary": 8.2 },
+      { "company": "Infosys", "students": 125, "avgSalary": 7.8 },
+      { "company": "Wipro", "students": 110, "avgSalary": 6.9 },
+      { "company": "Accenture", "students": 85, "avgSalary": 9.5 },
+      { "company": "Cognizant", "students": 95, "avgSalary": 7.2 },
+      { "company": "Capgemini", "students": 78, "avgSalary": 8.8 },
+      { "company": "Deloitte", "students": 55, "avgSalary": 12.5 },
+      { "company": "EY", "students": 48, "avgSalary": 11.8 },
+      { "company": "PwC", "students": 42, "avgSalary": 13.2 },
+      { "company": "KPMG", "students": 38, "avgSalary": 12.9 },
+      { "company": "IBM", "students": 65, "avgSalary": 10.5 },
+      { "company": "HCL", "students": 88, "avgSalary": 7.5 },
+      { "company": "Tech Mahindra", "students": 72, "avgSalary": 6.8 },
+      { "company": "L&T Infotech", "students": 58, "avgSalary": 7.9 },
+      { "company": "MindTree", "students": 45, "avgSalary": 8.1 },
+      { "company": "Mphasis", "students": 52, "avgSalary": 7.6 },
+      { "company": "Hexaware", "students": 38, "avgSalary": 6.5 },
+      { "company": "Birlasoft", "students": 35, "avgSalary": 7.0 },
+      { "company": "NIIT Technologies", "students": 28, "avgSalary": 6.2 },
+      { "company": "Persistent Systems", "students": 42, "avgSalary": 8.5 },
+      { "company": "Cyient", "students": 38, "avgSalary": 7.8 },
+      { "company": "Tata Elxsi", "students": 32, "avgSalary": 9.2 },
+      { "company": "KPIT", "students": 45, "avgSalary": 8.0 },
+      { "company": "Siemens", "students": 28, "avgSalary": 12.5 }
+    ],
+    "branchTrends": {
+      "CSE": [85, 88, 92, 95, 98, 99],
+      "ECE": [78, 82, 87, 91, 95, 96],
+      "EE": [72, 76, 81, 85, 92, 94],
+      "ME": [65, 70, 75, 80, 88, 92],
+      "CE": [68, 73, 78, 83, 85, 89],
+      "PIE": [70, 75, 80, 85, 90, 93],
+      "CHEM": [65, 68, 72, 78, 82, 87],
+      "MME": [68, 72, 76, 80, 85, 89]
+    },
+    "monthlyPlacements": {
+      "labels": ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      "values": [25, 40, 75, 110, 140, 160, 185, 210, 245, 280, 315, 350]
+    },
+    "topBranches": [
+      { "branch": "CSE", "placed": 245, "total": 250, "percentage": 98 },
+      { "branch": "ECE", "placed": 235, "total": 248, "percentage": 95 },
+      { "branch": "EE", "placed": 225, "total": 245, "percentage": 92 },
+      { "branch": "ME", "placed": 215, "total": 245, "percentage": 88 },
+      { "branch": "PIE", "placed": 220, "total": 245, "percentage": 90 },
+      { "branch": "CE", "placed": 205, "total": 240, "percentage": 85 },
+      { "branch": "CHEM", "placed": 195, "total": 235, "percentage": 83 },
+      { "branch": "MME", "placed": 200, "total": 240, "percentage": 83 }
+    ],
+    "genderStats": {
+      "male": 68.5,
+      "female": 31.5
+    },
+    "internationalOffers": 75,
+    "ppoStats": {
+      "ppoReceived": 200,
+      "ppoAccepted": 155
+    }
+  }
+}

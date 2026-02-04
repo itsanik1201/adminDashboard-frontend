@@ -1,0 +1,31 @@
+@if (isOpen) {
+  <div class="global-search-overlay" (click)="closeModal()" role="presentation">
+    <div class="global-search" (click)="$event.stopPropagation()" role="dialog" aria-label="Global search">
+      <div class="global-search__bar">
+        <span class="global-search__icon" aria-hidden="true">🔍</span>
+        <input
+          type="text"
+          class="global-search__input"
+          placeholder="Search placements, companies, branches..."
+          [(ngModel)]="searchQuery"
+          (keydown.escape)="closeModal()"
+        />
+      </div>
+      <ul class="global-search__results">
+        @for (item of getFilteredResults(); track item.label; let i = $index) {
+          <li>
+            <button
+              type="button"
+              class="global-search__result-item"
+              [class.global-search__result-item--selected]="i === selectedIndex"
+              (click)="onSelectItem(item)"
+            >
+              <span class="global-search__result-icon">{{ item.icon }}</span>
+              <span class="global-search__result-label">{{ item.label }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+}

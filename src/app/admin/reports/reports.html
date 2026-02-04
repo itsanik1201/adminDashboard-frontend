@@ -1,0 +1,39 @@
+<div class="reports">
+  <h2>Reports</h2>
+
+  @if (loading) {
+    <p>Loading reports...</p>
+  } @else if (error) {
+    <p class="error">{{ error }}</p>
+  } @else {
+    <table class="reports-table">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Email</th>
+          <th>Placements</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (report of reports; track report.student._id) {
+          <tr>
+            <td>{{ report.student.name }}</td>
+            <td>{{ report.student.email }}</td>
+            <td>
+              @for (placement of report.placements; track placement._id) {
+                <div>{{ placement.company }} - ${{ placement.avgSalary }}</div>
+              }
+            </td>
+            <td>
+              <button (click)="editReport(report)">Edit</button>
+              <button (click)="deleteReport(report)">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <button (click)="createReport()">Create Report</button>
+  }
+</div>

@@ -1,0 +1,31 @@
+/* --- BEM: Placement Charts (Hover lift, card styling) --- */
+
+.placement-charts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.placement-charts__card {
+  background: var(--color-charcoal-light);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.placement-charts__card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lift);
+}
+
+.placement-charts__title {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.placement-charts__canvas-wrap {
+  position: relative;
+  height: 240px;
+}

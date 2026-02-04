@@ -1,0 +1,43 @@
+/* --- BEM: KPI Cards (Staggered entrance, hover lift) --- */
+
+.kpi-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.kpi-cards__card {
+  background: var(--color-charcoal-light);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.kpi-cards__card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lift);
+}
+
+.kpi-cards__card--highlight {
+  grid-column: span 2;
+  border: 2px solid var(--color-success-green);
+}
+
+.kpi-cards__value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-steel-blue-light);
+}
+
+.kpi-cards__card--highlight .kpi-cards__value {
+  color: var(--color-success-green-light);
+}
+
+.kpi-cards__label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}

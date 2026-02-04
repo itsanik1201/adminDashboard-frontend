@@ -1,0 +1,178 @@
+<div class="dashboard">
+  @if (isFetching) {
+    <div class="dashboard__welcome">
+      <p class="dashboard__welcome-text">Welcome back! Fetching NIT Jamshedpur placement stats...</p>
+    </div>
+  } @else {
+    <header class="dashboard__header">
+      <h1 class="dashboard__title">Placement Session Overview</h1>
+      <p class="dashboard__subtitle">National Institute of Technology Jamshedpur <span class="dashboard__badge">2023–24</span></p>
+    </header>
+
+    <section class="dashboard__grid">
+      <aside class="dashboard__sidebar">
+        <app-kpi-cards [metrics]="placementMetrics" />
+      </aside>
+
+      <article class="dashboard__content">
+        @if (activeTab === 'placements') {
+          @if (isAdmin) {
+            <!-- Company-wise Placements Table with Admin Controls -->
+            <div class="placements-table">
+              <div class="placements-header">
+                <h3>Company-wise Placements</h3>
+                <button class="btn btn-primary" (click)="showAddForm = !showAddForm">
+                  {{ showAddForm ? 'Cancel' : 'Add Placement' }}
+                </button>
+              </div>
+
+              @if (showAddForm) {
+                <div class="add-form">
+                  <h4>Add New Placement</h4>
+                  <form (ngSubmit)="addPlacement()">
+                    <div class="form-group">
+                      <label for="company">Company:</label>
+                      <input type="text" id="company" [(ngModel)]="newPlacement.company" name="company" required>
+                     </div>
+                    <div class="form-group">
+                      <label for="students">Students Placed:</label>
+                      <input type="number" id="students" [(ngModel)]="newPlacement.students" name="students" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="avgSalary">Average Salary (LPA):</label>
+                      <input type="number" step="0.1" id="avgSalary" [(ngModel)]="newPlacement.avgSalary" name="avgSalary" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="branch">Branch:</label>
+                      <select id="branch" [(ngModel)]="newPlacement.branch" name="branch" required>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EE">EE</option>
+                        <option value="ME">ME</option>
+                        <option value="CE">CE</option>
+                        <option value="PIE">PIE</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add Placement</button>
+                  </form>
+                </div>
+              }
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Students Placed</th>
+                    <th>Average Salary (LPA)</th>
+                    <th>Branch</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (company of companyWisePlacements; track company.company) {
+                    <tr>
+                      <td>{{ company.company }}</td>
+                      <td>{{ company.students }}</td>
+                      <td>{{ company.avgSalary }}</td>
+                      <td>{{ company.branch || 'N/A' }}</td>
+                      <td>
+                        <button class="btn btn-danger btn-sm" (click)="deletePlacement(company)">Delete</button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          } @else {
+            <div class="access-denied">
+              <h3>Access Restricted</h3>
+              <p>Only administrators can view placement details.</p>
+            </div>
+          }
+        }
+
+        @if (activeTab === 'analytics') {
+          <!-- Analytics Dashboard -->
+          <div class="analytics-grid">
+            <!-- Salary Distribution Chart -->
+            <div class="analytics-chart">
+              <h3>Salary Distribution</h3>
+              <canvas #salaryDistributionCanvas></canvas>
+            </div>
+
+            <!-- Monthly Placements Trend -->
+            <div class="analytics-chart">
+              <h3>Monthly Placement Trend</h3>
+              <canvas #monthlyPlacementsCanvas></canvas>
+            </div>
+
+            <!-- Branch Performance -->
+            <div class="analytics-chart">
+              <h3>Placement Performance by Branch</h3>
+              <canvas #placementBarChartCanvas></canvas>
+            </div>
+
+            <!-- Top Companies -->
+            <div class="analytics-stats">
+              <h3>Top Companies by Placements</h3>
+              <div class="company-list">
+                @for (company of companyWisePlacements; track company.company) {
+                  <div class="company-item">
+                    <span class="company-name">{{ company.company }}</span>
+                    <span class="company-stats">{{ company.students }} students • ₹{{ company.avgSalary }} LPA avg</span>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Additional Statistics -->
+            <div class="analytics-stats">
+              <h3>Key Statistics</h3>
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <span class="stat-value">{{ genderStats.male }}%</span>
+                  <span class="stat-label">Male Students</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">{{ genderStats.female }}%</span>
+                  <span class="stat-label">Female Students</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">{{ internationalOffers }}</span>
+                  <span class="stat-label">International Offers</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">{{ ppoStats.ppoAccepted }}/{{ ppoStats.ppoReceived }}</span>
+                  <span class="stat-label">PPOs Accepted</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === 'dashboard') {
+          <app-placement-charts [trendData]="trendData" [branchData]="branchData" />
+          <!-- NITJ Branch Analytics: Placement Performance Bar Graph -->
+          <div class="placementBarChart">
+            <h3>Placement Performance by Branch</h3>
+            <canvas #placementBarChartCanvas></canvas>
+          </div>
+
+          <!-- Branch-wise Placement Pie Chart -->
+          <div class="branchPieChart">
+            <h3>Branch-wise Placement Distribution</h3>
+            <canvas #branchPieChartCanvas></canvas>
+          </div>
+        }
+      </article>
+
+      <aside class="dashboard__recruiters">
+        <app-recruiters-panel [recruiters]="recruitersList" />
+      </aside>
+    </section>
+
+    <footer class="dashboard__footer">
+      <p>Last Updated: {{ currentDate }}</p>
+    </footer>
+  }
+</div>

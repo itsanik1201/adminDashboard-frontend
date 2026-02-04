@@ -1,0 +1,40 @@
+<div class="user-management">
+  <h2>User Management</h2>
+
+  @if (loading) {
+    <p>Loading users...</p>
+  } @else if (error) {
+    <p class="error">{{ error }}</p>
+  } @else {
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track user._id) {
+          <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <select [value]="user.role" (change)="updateUserRole(user._id, $event)">
+                <option value="STUDENT">Student</option>
+                <option value="TPC">TPC</option>
+                <option value="DEPT_HEAD">Dept Head</option>
+              </select>
+            </td>
+            <td>{{ user.isActive ? 'Active' : 'Inactive' }}</td>
+            <td>
+              <button (click)="deleteUser(user._id)" class="delete-btn">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

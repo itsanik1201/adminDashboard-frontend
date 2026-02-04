@@ -1,0 +1,11 @@
+<div class="kpi-cards">
+  @for (metric of metrics; track metric.label) {
+    <div
+      class="kpi-cards__card"
+      [class.kpi-cards__card--highlight]="metric.isHighlight"
+    >
+      <span class="kpi-cards__value">{{ metric.value }}</span>
+      <span class="kpi-cards__label">{{ metric.label }}</span>
+    </div>
+  }
+</div>

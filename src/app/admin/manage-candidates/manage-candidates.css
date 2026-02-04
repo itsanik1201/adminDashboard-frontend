@@ -1,0 +1,99 @@
+.manage-candidates {
+  padding: 2rem;
+}
+
+.manage-candidates__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.manage-candidates__title {
+  margin: 0;
+  color: var(--color-steel-blue);
+}
+
+.manage-candidates__create-btn {
+  background-color: var(--color-steel-blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.manage-candidates__create-btn:hover {
+  background-color: var(--color-dark-steel-blue);
+}
+
+.manage-candidates__loading,
+.manage-candidates__error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.manage-candidates__error {
+  color: #dc3545;
+}
+
+.manage-candidates__table-container {
+  overflow-x: auto;
+}
+
+.manage-candidates__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.manage-candidates__table th,
+.manage-candidates__table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.manage-candidates__table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: var(--color-steel-blue);
+}
+
+.manage-candidates__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.manage-candidates__edit-btn,
+.manage-candidates__delete-btn {
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.manage-candidates__edit-btn {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.manage-candidates__edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.manage-candidates__delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.manage-candidates__delete-btn:hover {
+  background-color: #c82333;
+}
