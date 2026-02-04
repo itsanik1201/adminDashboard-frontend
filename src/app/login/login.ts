@@ -16,7 +16,7 @@ const DEMO_TOKEN = 'demo-session-token';
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
-export class LoginComponent {
+export class Login {
   isLoginMode = true;
   isSubmitting = false;
   showTimeoutBypass = false;
@@ -54,7 +54,7 @@ export class LoginComponent {
           error: (error) => {
             this.isSubmitting = false;
             if (error.status === 404) {
-              this.toast.show('User not found. Please register first.', 'info');
+              this.toast.show('User not found. Please register first.', 'error');
               this.switchToRegister();
             } else if (error.status === 401) {
               this.toast.show('Invalid password.', 'error');
