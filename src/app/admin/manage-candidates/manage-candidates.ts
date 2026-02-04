@@ -32,7 +32,6 @@ export class ManageCandidatesComponent implements OnInit {
   loadStudents() {
     this.loading = true;
     this.error = '';
-    // Use dummy data instead of API call
     this.students = this.getDummyStudents();
     this.loading = false;
   }
@@ -56,20 +55,20 @@ export class ManageCandidatesComponent implements OnInit {
     return this.auth.isAdminOnly();
   }
 
-  // CRUD operations would be implemented here
+ 
   createStudent() {
-    // TODO: Implement create modal/form
+    
     alert('Create student functionality to be implemented');
   }
 
   editStudent(student: Student) {
-    // TODO: Implement edit modal/form
+    
     alert(`Edit student: ${student.name}`);
   }
 
   deleteStudent(student: Student) {
     if (confirm(`Are you sure you want to delete ${student.name}?`)) {
-      // TODO: Implement delete API call
+     
       alert('Delete functionality to be implemented');
     }
   }

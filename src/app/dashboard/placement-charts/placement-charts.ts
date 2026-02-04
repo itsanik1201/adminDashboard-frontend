@@ -1,10 +1,3 @@
-/**
- * Placement Charts Component
- * Renders Chart.js bar charts with smooth easing on scroll-into-view.
- * Uses Intersection Observer to trigger animation when charts enter viewport.
- */
-
-/* External Libraries */
 import { Component, ElementRef, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import Chart from 'chart.js/auto';
 
@@ -64,12 +57,6 @@ export class PlacementChartsComponent implements AfterViewInit, OnDestroy {
     if (trendEl) this.observer.observe(trendEl);
     if (branchEl) this.observer.observe(branchEl);
   }
-
-  /**
-   * Renders the year-over-year placement trend chart.
-   * Developer note: Placement % = (Students Placed / Total Eligible) × 100.
-   * We filter out students with backlogs to match the placement criteria.
-   */
   private renderTrendChart(): void {
     if (this.trendChart) return;
 
@@ -113,11 +100,6 @@ export class PlacementChartsComponent implements AfterViewInit, OnDestroy {
       }
     });
   }
-
-  /**
-   * Renders branch-wise placement percentage chart.
-   * Developer note: Each branch's % = (Placed in branch / Eligible in branch) × 100.
-   */
   private renderBranchChart(): void {
     if (this.branchChart) return;
 

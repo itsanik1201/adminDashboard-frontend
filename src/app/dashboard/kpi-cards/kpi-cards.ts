@@ -1,15 +1,7 @@
-/**
- * KPI Cards Component
- * Displays placement metrics with staggered entrance animation.
- * Each card pops in with 0.1s delay between them.
- */
-
-/* External Libraries */
 import { Component, Input, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 
-/* Models */
 export interface KpiMetric {
   value: string;
   label: string;

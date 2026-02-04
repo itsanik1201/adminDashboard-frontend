@@ -1,9 +1,4 @@
-/**
- * Global Search Component (Spotlight-style)
- * Cmd+K interface for quick navigation and search.
- */
 
-/* External Libraries */
 import { Component, output, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -19,8 +14,6 @@ export class GlobalSearchComponent {
   isOpen = false;
   searchQuery = '';
   selectedIndex = 0;
-
-  // Emit when user selects an item (for future extensibility)
   searchSelect = output<string>();
 
   private readonly results = [
@@ -34,7 +27,6 @@ export class GlobalSearchComponent {
     this.isOpen = true;
     this.searchQuery = '';
     this.selectedIndex = 0;
-    // Focus input after modal renders
     setTimeout(() => this.focusInput(), 50);
   }
 

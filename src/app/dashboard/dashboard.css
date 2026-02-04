@@ -1,9 +1,8 @@
-/* --- BEM: Dashboard (Plain and Light Colors) --- */
 
 .dashboard {
   min-height: 100%;
-  background-color: #F8F9FA; /* Very light gray background */
-  color: #495057; /* Dark gray for text */
+  background-color: #F8F9FA; 
+  color: #495057;
 }
 
 .dashboard__welcome {
@@ -11,7 +10,7 @@
   align-items: center;
   justify-content: center;
   min-height: 200px;
-  background-color: #F4F7F6; /* Very Light Gray */
+  background-color: #F4F7F6; 
 }
 
 .dashboard__welcome-text {
@@ -42,7 +41,7 @@
 
 .dashboard__badge {
   display: inline-block;
-  background: #003366; /* NITJ Blue */
+  background: #003366; 
   color: #FFFFFF;
   padding: 4px 12px;
   border-radius: 4px;

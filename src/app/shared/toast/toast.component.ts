@@ -1,8 +1,3 @@
-/**
- * Toast Component
- * Renders a floating humanized notification message.
- */
-
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastService } from './toast';

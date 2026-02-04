@@ -66,7 +66,7 @@ export class UserManagementComponent implements OnInit {
     this.http.put(`http://localhost:5000/api/auth/users/role`, { userId, role: newRole }, { headers })
       .subscribe({
         next: () => {
-          this.loadUsers(); // Reload users
+          this.loadUsers(); 
         },
         error: (err) => {
           this.error = 'Failed to update user role';
@@ -87,7 +87,7 @@ export class UserManagementComponent implements OnInit {
     this.http.delete(`http://localhost:5000/api/auth/users/${userId}`, { headers })
       .subscribe({
         next: () => {
-          this.loadUsers(); // Reload users
+          this.loadUsers(); 
         },
         error: (err) => {
           this.error = 'Failed to delete user';

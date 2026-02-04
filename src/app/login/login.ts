@@ -1,15 +1,7 @@
-/**
- * Login Component
- * Simplified validation and relaxed constraints for easy testing.
- */
-
-/* External Libraries */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
-/* Internal Services */
 import { AuthService } from '../auth/auth.service';
 import { ToastService } from '../shared/toast/toast';
 
@@ -40,8 +32,6 @@ export class LoginComponent {
     private toast: ToastService,
     private http: HttpClient
   ) {}
-
-  /** Basic email format: must contain @ and . */
   get isEmailValid(): boolean {
     const e = this.email.trim();
     return e.includes('@') && e.includes('.');
@@ -50,8 +40,6 @@ export class LoginComponent {
   get canSubmit(): boolean {
     return this.isEmailValid && this.password.length >= 6;
   }
-
-  /** Authenticate with backend: Send login or register request based on mode. */
   handleSubmit(): void {
     if (!this.canSubmit) return;
 
@@ -97,13 +85,9 @@ export class LoginComponent {
         });
     }
   }
-
-  /** Call after successful auth — saves session and navigates. */
   handleSuccessfulAuthentication(token: string, role?: string, name?: string): void {
     this.auth.handleSuccessfulAuthentication(token, role, name);
   }
-
-  /** Bypass: enter dashboard without backend. */
   enterDashboardAnyway(): void {
     this.auth.handleSuccessfulAuthentication(
       DEMO_TOKEN,

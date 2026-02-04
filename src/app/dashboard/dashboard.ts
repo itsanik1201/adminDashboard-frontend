@@ -1,9 +1,3 @@
-/**
- * Dashboard Component
- * Loads placement data from mock JSON (with inline fallback) and shows welcome message.
- */
-
-/* External Libraries */
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +5,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-/* Internal Components */
+
 import { KpiCardsComponent, KpiMetric } from './kpi-cards/kpi-cards';
 import { PlacementChartsComponent } from './placement-charts/placement-charts';
 import { RecruitersPanelComponent } from './recruiters-panel/recruiters-panel';
@@ -102,17 +96,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Humanized animation: Bar graph grows from bottom when page loads
     setTimeout(() => {
       this.initializePlacementBarChart();
-    }, 1000); // Delay to ensure data is loaded
+    }, 1000); 
   }
-
-  /** Sets the active tab. */
   setActiveTab(tab: string): void {
     this.activeTab = tab;
     if (tab === 'analytics') {
-      // Re-initialize charts if switching to analytics tab
       setTimeout(() => {
         this.initializePlacementBarChart();
         this.initializeSalaryDistributionChart();
@@ -120,29 +110,26 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }, 100);
     }
     if (tab === 'dashboard') {
-      // Re-initialize charts if switching to dashboard tab
       setTimeout(() => {
         this.initializePlacementBarChart();
         this.initializeBranchPieChart();
       }, 100);
     }
   }
-
-  /** Sets the active tab based on the current route. */
   private setActiveTabFromRoute(): void {
     this.route.url.subscribe(url => {
       const path = url[0]?.path;
       if (path === 'analytics') {
         this.activeTab = 'analytics';
-        this.loadPlacementData(); // Reload data when switching to analytics
+        this.loadPlacementData(); 
       } else if (path === 'placements') {
         this.activeTab = 'placements';
-        this.loadPlacementData(); // Reload data when switching to placements
+        this.loadPlacementData(); 
       } else {
         this.activeTab = 'dashboard';
-        this.loadPlacementData(); // Reload data when switching to dashboard
+        this.loadPlacementData(); 
       }
-      this.cdr.detectChanges(); // Force change detection to update the view immediately
+      this.cdr.detectChanges();  
       if (this.activeTab === 'analytics') {
         setTimeout(() => {
           this.initializePlacementBarChart();
@@ -152,8 +139,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-  /** Loads placement data from mock JSON; falls back to defaults if fetch fails. */
   private async loadPlacementData(): Promise<void> {
     try {
       const res = await fetch(MOCK_DATA_URL);
@@ -195,14 +180,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       }
     } catch {
-      // Use defaults; UI stays eye-catching
     } finally {
-      // Brief delay so "Welcome back" message is visible
       setTimeout(() => { this.isFetching = false; }, 800);
     }
   }
-
-  /** Initializes the placement bar chart with NITJ Branch Analytics. */
   private initializePlacementBarChart(): void {
     if (!this.placementBarChartCanvas) return;
 
@@ -216,7 +197,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         datasets: [{
           label: 'Placement Percentage (%)',
           data: this.branchData.values,
-          backgroundColor: '#003366', // NITJ Blue
+          backgroundColor: '#003366', 
           borderColor: '#003366',
           borderWidth: 1
         }]
@@ -236,8 +217,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-  /** Initializes the salary distribution chart. */
   private initializeSalaryDistributionChart(): void {
     if (!this.salaryDistributionCanvas) return;
 
@@ -251,7 +230,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         datasets: [{
           label: 'Number of Students',
           data: this.salaryDistribution.values || [],
-          backgroundColor: '#28a745', // Green
+          backgroundColor: '#28a745', 
           borderColor: '#28a745',
           borderWidth: 1
         }]
@@ -270,8 +249,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-  /** Initializes the monthly placements chart. */
   private initializeMonthlyPlacementsChart(): void {
     if (!this.monthlyPlacementsCanvas) return;
 
@@ -285,7 +262,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         datasets: [{
           label: 'Placements',
           data: this.monthlyPlacements.values || [],
-          backgroundColor: 'rgba(0, 51, 102, 0.2)', // NITJ Blue with transparency
+          backgroundColor: 'rgba(0, 51, 102, 0.2)', 
           borderColor: '#003366',
           borderWidth: 2,
           fill: true
@@ -306,7 +283,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  /** Initializes the branch pie chart. */
   private initializeBranchPieChart(): void {
     if (!this.branchPieChartCanvas) return;
 
@@ -348,8 +324,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-  /** Adds a new placement. */
   addPlacement(): void {
     if (!this.newPlacement.company || !this.newPlacement.students || !this.newPlacement.avgSalary || !this.newPlacement.branch) {
       alert('Please fill all fields');
@@ -369,14 +343,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-  /** Deletes a placement. */
   deletePlacement(placement: any): void {
     if (!confirm(`Are you sure you want to delete placement for ${placement.company}?`)) {
       return;
     }
-
-    // For now, just remove from local array since we don't have IDs in mock data
     const index = this.companyWisePlacements.indexOf(placement);
     if (index > -1) {
       this.companyWisePlacements.splice(index, 1);

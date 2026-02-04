@@ -13,7 +13,7 @@ interface Student {
 interface Placement {
   _id: string;
   company: string;
-  students: string[]; // Array of student IDs
+  students: string[]; 
   avgSalary: number;
   branch: string;
   year: number;
@@ -46,7 +46,7 @@ export class ReportsComponent implements OnInit {
   loadReports() {
     this.loading = true;
     this.error = '';
-    // Use dummy data instead of API calls
+   
     const students = this.getDummyStudents();
     const placements = this.getDummyPlacements();
     this.reports = students.map(student => ({
@@ -91,20 +91,19 @@ export class ReportsComponent implements OnInit {
     return this.auth.isAdminView();
   }
 
-  // CRUD operations would be implemented here
-  createReport() {
-    // TODO: Implement create modal/form
+  createReport() { 
+   
     alert('Create report functionality to be implemented');
   }
 
   editReport(report: ReportItem) {
-    // TODO: Implement edit modal/form
+  
     alert(`Edit report for: ${report.student.name}`);
   }
 
   deleteReport(report: ReportItem) {
     if (confirm(`Are you sure you want to delete report for ${report.student.name}?`)) {
-      // TODO: Implement delete API call
+     
       alert('Delete functionality to be implemented');
     }
   }

@@ -1,8 +1,3 @@
-/**
- * Toast Service
- * Shows humanized notification messages (e.g. registration failures).
- */
-
 import { Injectable, signal } from '@angular/core';
 
 export type ToastType = 'error' | 'success' | 'info';

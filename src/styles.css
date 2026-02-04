@@ -1,11 +1,5 @@
-/* ==========================================================================
-   NIT JAMSHEDPUR PLACEMENT ANALYTICS – GLOBAL STYLES
-   Color palette: Deep Charcoal, Steel Blue, Success Green
-   ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
-
-/* --- Design Tokens --- */
 :root {
   --color-charcoal: #1A1A1B;
   --color-charcoal-light: #2D2D2F;
@@ -29,8 +23,6 @@
   --transition-fast: 0.2s ease;
   --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* --- Base --- */
 *,
 *::before,
 *::after {

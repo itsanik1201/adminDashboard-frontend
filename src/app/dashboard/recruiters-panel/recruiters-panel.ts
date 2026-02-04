@@ -1,9 +1,3 @@
-/**
- * Recruiters Panel Component
- * Displays prominent recruiter names with staggered entrance.
- */
-
-/* External Libraries */
 import { Component, Input, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
