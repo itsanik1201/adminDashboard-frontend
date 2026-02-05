@@ -38,7 +38,16 @@ export class Login {
   }
 
   get canSubmit(): boolean {
-    return this.isEmailValid && this.password.length >= 6;
+    return this.isEmailValid && this.isPasswordValid;
+  }
+
+  get isPasswordValid(): boolean {
+    const password = this.password;
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumber;
   }
 
   handleSubmit(): void {
@@ -53,7 +62,7 @@ export class Login {
         password: this.password
       }).subscribe({
         next: (res: any) => {
-          this.isSubmitting = false;
+          setTimeout(() => this.isSubmitting = false);
           this.auth.handleSuccessfulAuthentication(
             res.token,
             res.role,
@@ -61,7 +70,7 @@ export class Login {
           );
         },
         error: (err) => {
-          this.isSubmitting = false;
+          setTimeout(() => this.isSubmitting = false);
 
           if (err.status === 404) {
             this.toast.show('User not found. Please register first.', 'error');

@@ -60,6 +60,9 @@
             placeholder=" "
           />
           <label class="login__label" for="password">Password</label>
+          @if (password && !isPasswordValid) {
+            <span class="login__hint">Password must be at least 8 characters with uppercase, lowercase, and number.</span>
+          }
         </div>
 
      
