@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -17,14 +17,14 @@ const DEMO_TOKEN = 'demo-session-token';
   styleUrls: ['./login.css']
 })
 export class Login {
-  isLoginMode = true;
-  isSubmitting = false;
-  showTimeoutBypass = false;
+  readonly isLoginMode = signal(true);
+  readonly isSubmitting = signal(false);
+  readonly showTimeoutBypass = signal(false);
 
   candidateName = '';
   email = '';
   password = '';
-  portalAccessLevel: 'TPC' | 'STUDENT' | 'DEPT_HEAD' = 'STUDENT';
+  readonly portalAccessLevel = signal<'TPC' | 'STUDENT' | 'DEPT_HEAD'>('STUDENT');
 
   constructor(
     private auth: AuthService,
@@ -53,53 +53,57 @@ export class Login {
   handleSubmit(): void {
     if (!this.canSubmit) return;
 
-    this.isSubmitting = true;
+    this.isSubmitting.set(true);
 
-    if (this.isLoginMode) {
-     
+    if (this.isLoginMode()) {
+
       this.http.post(`${AUTH_API_BASE}/login`, {
         email: this.email,
         password: this.password
-      }).subscribe({
+      }, { withCredentials: true }).subscribe({
         next: (res: any) => {
-          setTimeout(() => this.isSubmitting = false);
-          this.auth.handleSuccessfulAuthentication(
-            res.token,
-            res.role,
-            res.name
-          );
+          setTimeout(() => {
+            this.isSubmitting.set(false);
+            this.auth.handleSuccessfulAuthentication(
+              res.token,
+              res.role,
+              res.name
+            );
+          });
         },
         error: (err) => {
-          setTimeout(() => this.isSubmitting = false);
+          setTimeout(() => {
+            this.isSubmitting.set(false);
 
-          if (err.status === 404) {
-            this.toast.show('User not found. Please register first.', 'error');
-            this.isLoginMode = false;
-          } else if (err.status === 401) {
-            this.toast.show('Invalid password.', 'error');
-          } else {
-            this.toast.show('Login failed. Please try again.', 'error');
-          }
+            if (err.status === 404) {
+              this.toast.show('User not found. Please register first.', 'error');
+              this.isLoginMode.set(false);
+            } else if (err.status === 401) {
+              this.toast.show('Invalid password.', 'error');
+            } else {
+              this.toast.show('Login failed. Please try again.', 'error');
+            }
+          });
 
           console.error('Login error:', err);
         }
       });
 
     } else {
-    
+
       this.http.post(`${AUTH_API_BASE}/register`, {
         name: this.candidateName,
         email: this.email,
         password: this.password,
-        role: this.portalAccessLevel
+        role: this.portalAccessLevel()
       }).subscribe({
         next: () => {
-          this.isSubmitting = false;
+          this.isSubmitting.set(false);
           this.toast.show('Registration successful. Please login.', 'success');
-          this.isLoginMode = true;
+          this.isLoginMode.set(true);
         },
         error: (err) => {
-          this.isSubmitting = false;
+          this.isSubmitting.set(false);
           this.toast.show(
             err.error?.message || 'Registration failed.',
             'error'
@@ -112,12 +116,12 @@ export class Login {
   enterDashboardAnyway(): void {
     this.auth.handleSuccessfulAuthentication(
       DEMO_TOKEN,
-      this.portalAccessLevel,
+      this.portalAccessLevel(),
       this.candidateName || 'Demo User'
     );
   }
 
   switchMode(): void {
-    this.isLoginMode = !this.isLoginMode;
+    this.isLoginMode.set(!this.isLoginMode());
   }
 }

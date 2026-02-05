@@ -17,11 +17,11 @@
 
   <main class="login__form-section">
     <div class="login__form-wrapper login__form-wrapper--fade-in">
-      <h2 class="login__form-title">{{ isLoginMode ? 'Welcome back' : 'Create account' }}</h2>
-      <p class="login__form-hint">{{ isLoginMode ? 'Sign in to access the placement dashboard' : 'Register to get started' }}</p>
+      <h2 class="login__form-title">{{ isLoginMode() ? 'Welcome back' : 'Create account' }}</h2>
+      <p class="login__form-hint">{{ isLoginMode() ? 'Sign in to access the placement dashboard' : 'Register to get started' }}</p>
 
       <form class="login__form" (ngSubmit)="handleSubmit()">
-        @if (!isLoginMode) {
+        @if (!isLoginMode()) {
           <div class="login__field">
             <input
               type="text"
@@ -65,21 +65,21 @@
           }
         </div>
 
-     
+
 
         <button
           type="submit"
           class="login__submit"
-          [disabled]="isSubmitting || !canSubmit"
+          [disabled]="isSubmitting() || !canSubmit"
         >
-          @if (isSubmitting) {
+          @if (isSubmitting()) {
             <span class="login__submit-text">Verifying Credentials...</span>
           } @else {
-            {{ isLoginMode ? 'Sign in' : 'Register' }}
+            {{ isLoginMode() ? 'Sign in' : 'Register' }}
           }
         </button>
 
-        @if (showTimeoutBypass) {
+        @if (showTimeoutBypass()) {
           <button
             type="button"
             class="login__bypass"
@@ -91,7 +91,7 @@
       </form>
 
       <button type="button" class="login__toggle" (click)="switchMode()">
-        {{ isLoginMode ? "Don't have an account? Sign up" : 'Already have an account? Sign in' }}
+        {{ isLoginMode() ? "Don't have an account? Sign up" : 'Already have an account? Sign in' }}
       </button>
     </div>
   </main>
